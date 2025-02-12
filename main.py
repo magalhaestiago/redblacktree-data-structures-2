@@ -65,10 +65,17 @@ class RedBlackTree:
                     else:
                         curr_node = curr_node.right
         self.insert_fix(new_node)
+        
+            # function to find the minimum node in a subtree
+    def _find_min(self, node):
+        while node.left is not None:
+            node = node.left
+        return node
+
 
     # deleteByVal
     def deleteByVal(self, value):
-        node_to_remove = self.search(value)
+        node_to_remove = self.find(value)
 
         if node_to_remove is None:
             return
@@ -164,12 +171,18 @@ class RedBlackTree:
     
         
 
+    # Questão 5) Escreva um método printTree, que consiste em mostrar a árvore rubro-negra em formato de  ́arvore (com os valores dos nós e suas cores respectivas, ex: 5 (P) e 10 (V)).
 
-
+    def printTree(self):
+        def _printTree(node, indent="", last=True):
+            if node is not None:
+                print(indent, "`- " if last else "|- ", f"{node.value} ({node.color})", sep="")
+                indent += "   " if last else "|  "
+                _printTree(node.right, indent, False)
+                _printTree(node.left, indent, True)
+        _printTree(self.root)
+        print()
         
-        
-
-    
         
 
     # Funções auxiliares
@@ -317,38 +330,54 @@ class RedBlackTree:
         self.inorderTraversal(node.right, result)
 
 
+
     
 
 # Example driver code
 if __name__ == "__main__":
     tree = RedBlackTree()
+    
+    # Questão: 6. Execute as seguintes sequências de operações em uma árvores rubro-negra inicialmente vazia e imprima a árvore após cada fim do conjunto de operações de Inserção ou Exclusão.
+    print("Insert first numbers: ")
+    tree.insert(5)
+    tree.insert(16)
+    tree.insert(22)
+    tree.insert(45)
+    tree.insert(2)
     tree.insert(10)
-    tree.insert(20)
+    tree.insert(18)
     tree.insert(30)
-    tree.insert(40)
     tree.insert(50)
+    tree.insert(12)
+    tree.insert(1)
+    
+    tree.printTree()
+    
+    print("Find 22 and 15: ")
+    tree.find(22)
+    tree.find(15)
+
+    print("Delete 30, 10, 22")
+    
+    tree.deleteByVal(30)
+    tree.deleteByVal(10)
+    tree.deleteByVal(22)
+    tree.printTree()
+    
+    print("Insert 25, 9, 33, 50")
+    
     tree.insert(25)
-
-    print("Inorder traversal of the Red-Black Tree:")
-    tree.printInOrder(tree.root)    
-    #tree.printInOrder(tree.root.right)
-    print()
-
+    tree.insert(9)
+    tree.insert(33)
+    tree.insert(50)
+    tree.printTree()
     
-    #tree.find(20)
-    #tree.delete(20)
-    #tree.find(20)
-    #print(tree.findMin())
-    #print(tree.minimum().value)
-    #print(tree.findMax())
-    #print(tree.findKth(1))
-    #print(tree.findKth(3))
-
-    tree.findInterval(25,30)
-    print()
+    print("Find Min and Max")
+    print(tree.findMin())
+    print(tree.findMax())
     
+    print("Find 5kth")
+    print(tree.findKth(5))
     
-    
-    #print("Inorder traversal of the Red-Black Tree after deleting 20")
-    #tree.printInOrder(tree.root)
-    #print()
+    print("Find Interval 10, 30")
+    tree.findInterval(10, 30)

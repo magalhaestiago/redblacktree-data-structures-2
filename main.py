@@ -338,7 +338,7 @@ if __name__ == "__main__":
     tree = RedBlackTree()
     
     # Questão: 6. Execute as seguintes sequências de operações em uma árvores rubro-negra inicialmente vazia e imprima a árvore após cada fim do conjunto de operações de Inserção ou Exclusão.
-    print("Insert first numbers: ")
+    print("---Insert first numbers ---")
     tree.insert(5)
     tree.insert(16)
     tree.insert(22)
@@ -353,18 +353,18 @@ if __name__ == "__main__":
     
     tree.printTree()
     
-    print("Find 22 and 15: ")
+    print("--- Find 22 and 15 ---")
     tree.find(22)
     tree.find(15)
 
-    print("Delete 30, 10, 22")
+    print("--- Delete 30, 10, 22 ---")
     
     tree.deleteByVal(30)
     tree.deleteByVal(10)
     tree.deleteByVal(22)
     tree.printTree()
     
-    print("Insert 25, 9, 33, 50")
+    print("--- Insert 25, 9, 33, 50 ---")
     
     tree.insert(25)
     tree.insert(9)
@@ -372,12 +372,12 @@ if __name__ == "__main__":
     tree.insert(50)
     tree.printTree()
     
-    print("Find Min and Max")
+    print("--- Find Min and Max ---")
     print(tree.findMin())
     print(tree.findMax())
     
-    print("Find 5kth")
+    print("--- Find 5kth ---")
     print(tree.findKth(5))
     
-    print("Find Interval 10, 30")
+    print("--- Find Interval 10, 30 ---")
     tree.findInterval(10, 30)
